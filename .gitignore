@@ -1,0 +1,9 @@
+.DS_Store
+node_modules/
+.git/
+public/css
+public/js
+bower.json
+bower_components/
+html/css/
+html/js/

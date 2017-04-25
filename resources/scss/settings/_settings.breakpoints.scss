@@ -1,0 +1,64 @@
+///------------------------------------
+//    #SETTINGS
+//------------------------------------
+
+// Globaly available variables
+
+
+
+
+
+//-------------------------
+//    #Breakpoints
+//    Global default settings
+//	  for breakpointa
+//-------------------------
+
+
+//----- Variables / Media query
+
+// Tablet
+$tabletPortrait    : 768px;
+$tabletLandscape   : 1024px;
+
+// Phone
+$phoneSmall       : $tabletPortrait / 2;
+$phone            : $tabletPortrait - 1;
+$overPhone        : $tabletPortrait;
+
+// Desktop
+$toDesktop         : $tabletLandscape;
+$desktop           : $tabletLandscape + 1;
+
+// vw
+$siteMaxWidth    : 1300px; // full wrap width - like on design
+
+// Max & min width
+$max: max-width;
+$min: min-width;
+
+//----- Breakpoints
+$breakpoints: (
+ 'phoneSmall'       :     ($max: $phoneSmall),
+ 'phone'            :     ($max: $phone),
+ 'overPhone'        :     ($min: $overPhone),
+ 'tablet'           :     ($min: $tabletPortrait) and ($max: $tabletLandscape),
+ 'tabletPortrait'   :     ($min: $tabletPortrait) and ($max: $tabletLandscape) and (orientation:portrait),
+ 'tabletLandscape'  :     ($min: $tabletPortrait) and ($max: $tabletLandscape) and (orientation:landscape),
+ 'toDesktop'        :     ($max: $toDesktop),
+ 'desktop'          :     ($min: $desktop),
+ 'siteMaxWidth'     :     ($max: $siteMaxWidth)
+);
+
+//----- Mixin / Breakpoints
+// Just set variable for breakpoint in _var-media-query.scss
+@mixin breakpoint($name) {
+ @if map-has-key($breakpoints, $name) {
+   @media #{inspect(map-get($breakpoints, $name))} {
+     @content;
+   }
+ }
+ @else {
+   @warn ("\"Couldn't find a breakpoint named \"#{$name}\" !!!\"");
+ }
+}
